@@ -6,18 +6,18 @@ public class Reward {
     private String name;
     private String description;
     private String fullDescription;
-    private Integer number;
+    private Integer price;
     private String image;
     private String category;
     private boolean inStock;
     private Integer stockCount;
 
-    public Reward(String id, String name, String description, String fullDescription, Integer number, String image, String category, boolean inStock, Integer stockCount) {
+    public Reward(String id, String name, String description, String fullDescription, Integer price, String image, String category, boolean inStock, Integer stockCount) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.fullDescription = fullDescription;
-        this.number = number;
+        this.price = price;
         this.image = image;
         this.category = category;
         this.inStock = inStock;
@@ -56,12 +56,12 @@ public class Reward {
         this.fullDescription = fullDescription;
     }
 
-    public Integer getNumber() {
-        return number;
+    public Integer getPrice() {
+        return price;
     }
 
-    public void setNumber(Integer number) {
-        this.number = number;
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 
     public String getImage() {

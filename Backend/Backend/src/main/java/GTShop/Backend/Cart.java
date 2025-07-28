@@ -1,25 +1,37 @@
-// package GTShop.Backend;
+package GTShop.Backend;
 
-// import java.util.ArrayList;
-// import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
 
-// import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-// public class Cart {
+@Service
+public class Cart {
 
-//     @Autowired
-//     private RewardRepository cartRewards;
-//     private Integer quantity;
-//     private Integer totalActivityPoints;
+    private List<CartItem> items=new ArrayList<>();
+    private Integer totalPoints;
 
-//     public Cart(){
+    public Cart(){
+        
+        this.totalPoints=0;
+    }
 
-//         this.quantity=0;
-//         this.totalActivityPoints=0;
-//     }
+    public void addItem(Reward reward, Integer quantity){
+        items.add(new CartItem(reward,quantity));
+    }
 
-//     public void addReward(String rewardId,Integer quantity){
+    public List<CartItem> getCartItems(){
+        return items;
+    }
 
+    public Integer getTotalPoints(){
+        
+        int s=0;
+        for(var i:items){
+            s+=i.getQuantity()*i.getReward().getPrice();
+        }
+        this.totalPoints=s;
+        return this.totalPoints;
+    }
 
-//     }
-// }
+}
