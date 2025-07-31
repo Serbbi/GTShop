@@ -1,5 +1,7 @@
 package GTShop.Backend;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -9,6 +11,7 @@ public class UserProfile {
     private String name;
     private String avatar;
     private Integer activityPoints;
+    private List<UserHistory> userHistory;
 
     public UserProfile(){
         this.id="1111";
@@ -54,5 +57,13 @@ public class UserProfile {
 
     public void setActivityPoints(Integer activityPoints) {
         this.activityPoints = activityPoints;
+    }
+
+    public List<UserHistory> getUserHistory() {
+        return userHistory;
+    }
+
+    public void setUserHistory(List<UserHistory> userHistory) {
+        this.userHistory = userHistory;
     }
 }

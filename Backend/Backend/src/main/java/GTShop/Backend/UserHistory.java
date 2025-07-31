@@ -1,16 +1,33 @@
-// package GTShop.Backend;
+package GTShop.Backend;
 
-// import org.springframework.beans.factory.annotation.Autowired;
+public class UserHistory {
 
-// public class UserHistory {
+    private String id;
+    private String rewardName;
+    private Integer pointsSpent;
+    private String status;
 
-//     @Autowired
-//     private CartService cartService;
+    public UserHistory(String id, String rewardName, Integer pointsSpent, String status){
+        this.id=id;
+        this.rewardName=rewardName;
+        this.pointsSpent=pointsSpent;
+        this.status=status;
+    }
 
-//     private Integer pointsSpent;
-//     private String status;
+    public String getId() {
+        return id;
+    }
 
-//     public UserHistory(){
-//         this.pointsSpent=cartService.getCart().getTotalPoints();
-//     }
-// }
+    public String getRewardName() {
+        return rewardName;
+    }
+
+    public Integer getPointsSpent() {
+        return pointsSpent;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+}

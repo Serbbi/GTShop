@@ -34,6 +34,17 @@ import java.util.Map;
                 Map<String,Object> response= new LinkedHashMap<>();
                 List<CartItem> purchasedItems=new ArrayList<>(cart.getCartItems());
 
+                List<UserHistory> userHistory = userProfile.getUserHistory();
+                if (userHistory == null) {
+                    userHistory = new ArrayList<>();
+                }
+
+                for(var i:purchasedItems){
+                    userHistory.add(new UserHistory(i.getReward().getId(), i.getReward().getName(), i.getReward().getPrice(), "Purchased"));
+                }
+
+                userProfile.setUserHistory(userHistory);
+
                 cart.deleteItems();
 
                 response.put("success", true);
@@ -44,6 +55,7 @@ import java.util.Map;
                 response.put("newBalance", userActivityPoints);
                 response.put("purchasedItems", purchasedItems);
                 response.put("transactionId", "1");
+
 
                 return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
         
