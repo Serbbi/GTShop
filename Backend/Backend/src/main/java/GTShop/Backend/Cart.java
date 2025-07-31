@@ -24,6 +24,12 @@ public class Cart {
         return items;
     }
 
+    public void deleteItems(){
+        for(int i=0;i<items.size();i++){
+            
+        }
+    }
+
     public Integer getTotalPoints(){
         
         int s=0;

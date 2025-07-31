@@ -1,11 +1,21 @@
 package GTShop.Backend;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class UserProfile {
 
     private String id;
     private String name;
     private String avatar;
     private Integer activityPoints;
+
+    public UserProfile(){
+        this.id="1111";
+        this.name="Briana";
+        this.avatar="image.pnm";
+        this.activityPoints=4971;
+    }
 
     public UserProfile(String id, String name, String avatar, Integer activityPoints) {
         this.id = id;

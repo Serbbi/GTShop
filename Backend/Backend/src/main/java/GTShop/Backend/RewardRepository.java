@@ -25,7 +25,6 @@ public class RewardRepository {
     public Reward findById(String id){
         for(var r:rewards){
             if(r.getId().equals(id)){
-                System.out.println("Am iesit din functie cazul bun");
                 return r;
             }
         }

@@ -1,0 +1,278 @@
+/* ───── GLOBAL & LAYOUT ───── */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: sans-serif;
+}
+main {
+  flex: 1;
+}
+
+/* ───── HEADER ───── */
+.site-header {
+  background: #e6f2e9;
+  padding: 0.5rem 1rem;
+}
+.header-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.header-top {
+  justify-content: space-between;
+}
+.logo-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.logo {
+  height: 32px;
+}
+.shop-title {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.user-cart {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+.user-text {
+  line-height: 1.2;
+}
+.user-name {
+  display: block;
+  font-weight: 500;
+}
+.user-points {
+  display: block;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.cart-btn {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.cart-btn img {
+  height: 24px;
+}
+.cart-btn sup {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  font-size: 0.7rem;
+  background: #f00;
+  color: #fff;
+  padding: 0 4px;
+  border-radius: 8px;
+}
+
+/* Middle row */
+.header-middle {
+  justify-content: center;
+}
+.header-middle h1 {
+  font-size: 1.4rem;
+  margin: 0.5rem 0;
+}
+
+/* Bottom row */
+.header-bottom {
+  justify-content: space-between;
+}
+.header-bottom input,
+.header-bottom select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* ───── PRODUCT GRID ───── */
+#product-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  padding: 1rem;
+}
+.card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0.75rem;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+.card:hover {
+  transform: translateY(-2px);
+}
+.card img {
+  width: 100%;
+  border-radius: 4px;
+}
+.card h4 {
+  margin: 0.5rem 0 0.25rem;
+  font-size: 1rem;
+}
+.card p {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+}
+/* stock indicator circle */
+.stock-indicator {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 0.75rem;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+.in-stock .stock-indicator {
+  background: green;
+}
+.out-of-stock .stock-indicator {
+  background: red;
+}
+
+/* ───── MODALS ───── */
+.hidden {
+  display: none !important;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1rem;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+}
+.modal-content .close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* ───── FOOTER ───── */
+.site-footer {
+  background: #3b6b50;
+  color: #fff;
+  padding: 2rem 1rem;
+  margin-top: auto;
+}
+.promo-section {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.banner {
+  position: relative;
+  max-width: 600px;
+  margin: auto;
+}
+.banner-img {
+  display: none;
+  width: 100%;
+}
+.banner-img.active {
+  display: block;
+}
+.dots {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #555;
+  cursor: pointer;
+}
+.dot.active {
+  background: #fff;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
+}
+.col {
+  min-width: 150px;
+}
+.footer-links a {
+  color: #ccc;
+  text-decoration: none;
+  display: block;
+  margin: 0.25rem 0;
+}
+.footer-logo {
+  width: 80px;
+  margin-bottom: 1rem;
+}
+.site-footer .copyright {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+}
+
+/* === CART REMOVE BUTTON === */
+.cart-remove-btn {
+  background: none;
+  border: none;
+  color: #f00;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+/* ───── RESPONSIVE TWEAKS ───── */
+@media (max-width: 768px) {
+  .header-top,
+  .header-bottom {
+    justify-content: center;
+  }
+  .header-bottom {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}

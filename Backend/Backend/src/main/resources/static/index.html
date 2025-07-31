@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ro">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>GT Shop</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header class="site-header">
+      <!-- Row 1: logo + title | user + cart -->
+      <div class="header-row header-top">
+        <div class="logo-title">
+          <img src="logo.png" alt="Generația Tech logo" class="logo" />
+          <span class="shop-title">SHOP TITLE</span>
+        </div>
+        <div class="user-cart">
+          <div class="user-info">
+            <img src="avatar.png" alt="Avatar" class="avatar" />
+            <div class="user-text">
+              <span class="user-name">Tret Elena</span>
+              <span class="user-points">4881 AP</span>
+            </div>
+          </div>
+          <button id="cart-button" class="cart-btn" aria-label="Cart">
+            <img src="backpack.png" alt="Cart" />
+            <sup id="cart-count">0</sup>
+          </button>
+        </div>
+      </div>
+
+      <!-- Row 2: main heading -->
+      <div class="header-row header-middle">
+        <h1>Lorem ipsum adipiscing mollis neque</h1>
+      </div>
+
+      <!-- Row 3: search | filter -->
+      <div class="header-row header-bottom">
+        <input type="text" id="search-input" placeholder="Search" />
+        <select id="filter-select">
+          <option value="">Toate categoriile</option>
+          <option value="Audio">Audio</option>
+          <option value="Lifestyle">Lifestyle</option>
+        </select>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main id="shop-main">
+      <section id="product-grid" class="grid"></section>
+    </main>
+
+    <!-- PRODUCT MODAL -->
+    <div id="product-modal" class="modal hidden">
+      <div class="modal-content">
+        <button class="close" id="close-product-modal">&times;</button>
+        <img id="modal-img" src="" alt="" />
+        <h3 id="modal-name"></h3>
+        <p id="modal-desc"></p>
+        <p id="modal-points"></p>
+        <p id="modal-stock"></p>
+        <button id="modal-add">Adaugă în Coș</button>
+      </div>
+    </div>
+
+    <!-- CART MODAL -->
+    <div id="cart-modal" class="modal hidden">
+      <div class="modal-content">
+        <button class="close" id="close-cart-modal">&times;</button>
+        <h3>Coș de cumpărături</h3>
+        <ul id="cart-items"></ul>
+        <button id="checkout-btn">Finalizează</button>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="promo-section">
+        <div class="banner">
+          <img src="promo1.png" alt="Promo 1" class="banner-img active" />
+          <img src="promo2.png" alt="Promo 2" class="banner-img" />
+          <img src="promo3.png" alt="Promo 3" class="banner-img" />
+          <img src="promo4.png" alt="Promo 4" class="banner-img" />
+        </div>
+        <div class="dots">
+          <span class="dot active" data-index="0"></span>
+          <span class="dot" data-index="1"></span>
+          <span class="dot" data-index="2"></span>
+          <span class="dot" data-index="3"></span>
+        </div>
+      </div>
+      <div class="footer-links">
+        <div class="col">
+          <img src="logo-footer.png" alt="" class="footer-logo" />
+          <div class="contact">
+            <a href="tel:+40123456789">Phone: +40 123 456 789</a>
+            <a href="#">Address: Str. Exemplu 1, Cluj</a>
+            <a href="mailto:info@generatiatech.ro"
+              >Email: info@generatiatech.ro</a
+            >
+          </div>
+        </div>
+        <div class="col">
+          <h4>Pagini</h4>
+          <a href="/">Landing</a>
+          <a href="/faq">FAQ</a>
+        </div>
+        <div class="col">
+          <h4>Documente</h4>
+          <a href="/terms">Termeni și condiții</a>
+          <a href="/privacy">Politica de confidențialitate</a>
+          <a href="/cookies">Politica de cookies</a>
+        </div>
+      </div>
+      <div class="copyright">©2025 Generația Tech</div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
