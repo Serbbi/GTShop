@@ -9,50 +9,47 @@
   <body>
     <!-- HEADER -->
     <header class="site-header">
-      <!-- Row 1: logo + title | user + cart -->
-      <div class="header-row header-top">
+      <div class="header-top container">
         <div class="logo-title">
-          <img src="logo.png" alt="Generația Tech logo" class="logo" />
+          <img src="assets/images/logo.png" alt="Generația Tech" class="logo" />
           <span class="shop-title">SHOP TITLE</span>
         </div>
         <div class="user-cart">
           <div class="user-info">
-            <img src="avatar.png" alt="Avatar" class="avatar" />
-            <div class="user-text">
+            <img src="assets/images/avatar.png" alt="Avatar" class="avatar" />
+            <div>
               <span class="user-name">Tret Elena</span>
-              <span class="user-points">4881 AP</span>
+              <span class="user-points">4881 AP</span>
             </div>
           </div>
           <button id="cart-button" class="cart-btn" aria-label="Cart">
-            <img src="backpack.png" alt="Cart" />
+            <img src="assets/images/backpack.png" alt="Cart" />
             <sup id="cart-count">0</sup>
           </button>
         </div>
       </div>
-
-      <!-- Row 2: main heading -->
-      <div class="header-row header-middle">
-        <h1>Lorem ipsum adipiscing mollis neque</h1>
-      </div>
-
-      <!-- Row 3: search | filter -->
-      <div class="header-row header-bottom">
-        <input type="text" id="search-input" placeholder="Search" />
-        <select id="filter-select">
-          <option value="">Toate categoriile</option>
-          <option value="Audio">Audio</option>
-          <option value="Lifestyle">Lifestyle</option>
-        </select>
-      </div>
     </header>
 
-    <!-- MAIN CONTENT -->
-    <main id="shop-main">
-      <section id="product-grid" class="grid"></section>
+    <!-- CONTROLS -->
+    <section class="controls-section container">
+      <h1>Lorem ipsum adipiscing mollis neque</h1>
+      <div class="controls">
+        <input type="text" id="search-input" placeholder="Caută…" />
+        <select id="filter-select">
+          <option value="">Toate categoriile</option>
+          <option value="Muntele cu premii">Muntele cu premii</option>
+          <option value="Amintiri calatoare">Amintiri călătoare</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- PRODUCT GRID -->
+    <main>
+      <section id="product-grid" class="product-container container"></section>
     </main>
 
     <!-- PRODUCT MODAL -->
-    <div id="product-modal" class="modal hidden">
+    <!-- <div id="product-modal" class="modal hidden">
       <div class="modal-content">
         <button class="close" id="close-product-modal">&times;</button>
         <img id="modal-img" src="" alt="" />
@@ -62,6 +59,42 @@
         <p id="modal-stock"></p>
         <button id="modal-add">Adaugă în Coș</button>
       </div>
+    </div> -->
+
+    <!-- PRODUCT DETAIL MODAL -->
+    <!-- <div id="product-modal" class="modal hidden">
+      <div class="modal-content">
+        <button class="close" id="close-product-modal">&times;</button>
+        <img id="modal-img" src="" alt="Product image" class="modal-image" />
+        <h3 id="modal-name">Product Name</h3>
+        <div class="modal-points">500 AP</div>
+        <button id="modal-add" class="modal-add-btn">
+          <img src="assets/images/backpack-small.png" alt="Add to cart" />
+        </button>
+      </div>
+    </div> -->
+
+    <!-- PRODUCT MODAL -->
+    <div id="product-modal" class="modal hidden">
+      <div class="modal-content">
+        <button class="close" id="close-product-modal">&times;</button>
+        <img id="modal-img" src="" alt="Product image" class="modal-image" />
+        <h3 id="modal-name"></h3>
+        <p id="modal-desc"></p>
+        <!-- ✅ Make sure this exists -->
+        <!-- <p id="modal-points"></p> -->
+        <p id="modal-stock"></p>
+        <!-- <button id="modal-add">
+          <img src="assets/images/backpack-small.png" alt="Adaugă" />
+        </button> -->
+
+        <div class="modal-price-line">
+          <span id="modal-points"></span>
+          <button id="modal-add">
+            <img src="assets/images/backpack-small.png" alt="Adaugă în Coș" />
+          </button>
+        </div>
+      </div>
     </div>
 
     <!-- CART MODAL -->
@@ -70,50 +103,62 @@
         <button class="close" id="close-cart-modal">&times;</button>
         <h3>Coș de cumpărături</h3>
         <ul id="cart-items"></ul>
-        <button id="checkout-btn">Finalizează</button>
+        <div id="cart-total"></div>
+        <button id="checkout-btn" class="hidden">Finalizează</button>
       </div>
     </div>
 
     <!-- FOOTER -->
     <footer class="site-footer">
-      <div class="promo-section">
-        <div class="banner">
-          <img src="promo1.png" alt="Promo 1" class="banner-img active" />
-          <img src="promo2.png" alt="Promo 2" class="banner-img" />
-          <img src="promo3.png" alt="Promo 3" class="banner-img" />
-          <img src="promo4.png" alt="Promo 4" class="banner-img" />
-        </div>
-        <div class="dots">
-          <span class="dot active" data-index="0"></span>
-          <span class="dot" data-index="1"></span>
-          <span class="dot" data-index="2"></span>
-          <span class="dot" data-index="3"></span>
-        </div>
-      </div>
-      <div class="footer-links">
-        <div class="col">
-          <img src="logo-footer.png" alt="" class="footer-logo" />
-          <div class="contact">
-            <a href="tel:+40123456789">Phone: +40 123 456 789</a>
-            <a href="#">Address: Str. Exemplu 1, Cluj</a>
-            <a href="mailto:info@generatiatech.ro"
-              >Email: info@generatiatech.ro</a
-            >
+      <div class="footer-main">
+        <div class="footer-logo-social">
+          <img
+            src="assets/images/logo-footer.png"
+            alt="GT Logo"
+            class="footer-logo-inline"
+          />
+          <div class="social-icons">
+            <img src="assets/images/icon-facebook.png" alt="Facebook" />
+            <img src="assets/images/icon-instagram.png" alt="Instagram" />
+            <img src="assets/images/icon-youtube.png" alt="YouTube" />
+            <img src="assets/images/icon-tiktok.png" alt="TikTok" />
+            <img src="assets/images/icon-linkedin.png" alt="LinkedIn" />
           </div>
         </div>
-        <div class="col">
-          <h4>Pagini</h4>
-          <a href="/">Landing</a>
-          <a href="/faq">FAQ</a>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <ul class="footer-list">
+            <li>
+              <img src="assets/images/icon-phone.png" class="icon" alt="" /> +40
+              123 456 789
+            </li>
+            <li>
+              <img src="assets/images/icon-map.png" class="icon" alt="" /> Str.
+              Exemplu 1, Cluj
+            </li>
+            <li>
+              <img src="assets/images/icon-email.png" class="icon" alt="" />
+              info@generatiatech.ro
+            </li>
+          </ul>
         </div>
-        <div class="col">
+        <div class="footer-section">
+          <h4>Pagini</h4>
+          <ul class="footer-list">
+            <li>&gt; <a href="/">Landing</a></li>
+            <li>&gt; <a href="/faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
           <h4>Documente</h4>
-          <a href="/terms">Termeni și condiții</a>
-          <a href="/privacy">Politica de confidențialitate</a>
-          <a href="/cookies">Politica de cookies</a>
+          <ul class="footer-list">
+            <li>&gt; <a href="/terms">Termeni și condiții</a></li>
+            <li>&gt; <a href="/privacy">Politica de confidențialitate</a></li>
+            <li>&gt; <a href="/cookies">Politica de cookies</a></li>
+          </ul>
         </div>
       </div>
-      <div class="copyright">©2025 Generația Tech</div>
+      <div class="footer-bottom">©2025 Generația Tech</div>
     </footer>
 
     <script src="script.js"></script>

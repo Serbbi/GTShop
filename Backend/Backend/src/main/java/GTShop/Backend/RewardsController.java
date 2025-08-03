@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class RewardsController {
 
     @Autowired
-    private RewardRepository rewards;
+    private RewardRepository rewards;   
 
     @GetMapping("api/rewards")
     public Map<String,List<Reward>> getRewards() {
 
-        return Map.of("rewards",rewards.getAllRewards());
+        return Map.of("rewards",rewards.findAll());
     }
     
 }

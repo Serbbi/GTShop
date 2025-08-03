@@ -27,7 +27,7 @@ public class CartController {
     @PostMapping("/add")
     public ResponseEntity<?> addToCart(@RequestBody AddToCartRequest request){
 
-        Reward reward=rewardRepository.findById(request.getRewardId());
+        Reward reward=rewardRepository.findById(request.getRewardId()).orElse(null);
 
         if(reward==null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("succes",false,"message","Reward not found!"));

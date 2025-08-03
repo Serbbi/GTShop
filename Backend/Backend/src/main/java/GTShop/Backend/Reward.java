@@ -1,8 +1,14 @@
 package GTShop.Backend;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Reward {
 
+    @Id
     private String id;
+
     private String name;
     private String description;
     private String fullDescription;
@@ -11,6 +17,10 @@ public class Reward {
     private String category;
     private boolean inStock;
     private Integer stockCount;
+
+    public Reward(){
+        
+    }
 
     public Reward(String id, String name, String description, String fullDescription, Integer price, String image, String category, boolean inStock, Integer stockCount) {
         this.id = id;
