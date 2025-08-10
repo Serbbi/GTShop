@@ -7,30 +7,46 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- HEADER -->
     <header class="site-header">
       <div class="header-top container">
         <div class="logo-title">
-          <img src="assets/images/logo.png" alt="Generația Tech" class="logo" />
+          <img
+            src="assets/icons/GT-logo-alb.png"
+            alt="Generația Tech"
+            class="logo"
+          />
           <span class="shop-title">SHOP TITLE</span>
         </div>
         <div class="user-cart">
-          <div class="user-info">
-            <img src="assets/images/avatar.png" alt="Avatar" class="avatar" />
-            <div>
-              <span class="user-name">Tret Elena</span>
-              <span class="user-points">4881 AP</span>
+          <div class="user-info-box">
+            <div class="user-info">
+              <img
+                src="assets/icons/account-icon.png"
+                alt="Avatar"
+                class="avatar"
+              />
+              <div class="user-text">
+                <span class="user-name">Tret Elena</span>
+                <div class="user-points-dropdown">
+                  <span class="user-points">4881 AP</span>
+                  <img
+                    src="assets/icons/down-arrow-logo.png"
+                    alt=""
+                    class="dropdown-icon"
+                  />
+                </div>
+              </div>
             </div>
           </div>
           <button id="cart-button" class="cart-btn" aria-label="Cart">
-            <img src="assets/images/backpack.png" alt="Cart" />
+            <img src="assets/icons/backpack-icon.png" alt="Cart" />
             <sup id="cart-count">0</sup>
           </button>
         </div>
       </div>
     </header>
 
-    <!-- CONTROLS -->
+    <!-- CONTROLS: search + filter -->
     <section class="controls-section container">
       <h1>Lorem ipsum adipiscing mollis neque</h1>
       <div class="controls">
@@ -48,108 +64,95 @@
       <section id="product-grid" class="product-container container"></section>
     </main>
 
-    <!-- PRODUCT MODAL -->
-    <!-- <div id="product-modal" class="modal hidden">
-      <div class="modal-content">
-        <button class="close" id="close-product-modal">&times;</button>
-        <img id="modal-img" src="" alt="" />
-        <h3 id="modal-name"></h3>
-        <p id="modal-desc"></p>
-        <p id="modal-points"></p>
-        <p id="modal-stock"></p>
-        <button id="modal-add">Adaugă în Coș</button>
-      </div>
-    </div> -->
-
-    <!-- PRODUCT DETAIL MODAL -->
-    <!-- <div id="product-modal" class="modal hidden">
-      <div class="modal-content">
-        <button class="close" id="close-product-modal">&times;</button>
-        <img id="modal-img" src="" alt="Product image" class="modal-image" />
-        <h3 id="modal-name">Product Name</h3>
-        <div class="modal-points">500 AP</div>
-        <button id="modal-add" class="modal-add-btn">
-          <img src="assets/images/backpack-small.png" alt="Add to cart" />
-        </button>
-      </div>
-    </div> -->
-
-    <!-- PRODUCT MODAL -->
+    <!-- PRODUCT MODAL (unchanged) -->
     <div id="product-modal" class="modal hidden">
-      <div class="modal-content">
+      <div class="modal-content detail-modal">
         <button class="close" id="close-product-modal">&times;</button>
-        <img id="modal-img" src="" alt="Product image" class="modal-image" />
-        <h3 id="modal-name"></h3>
-        <p id="modal-desc"></p>
-        <!-- ✅ Make sure this exists -->
-        <!-- <p id="modal-points"></p> -->
-        <p id="modal-stock"></p>
-        <!-- <button id="modal-add">
-          <img src="assets/images/backpack-small.png" alt="Adaugă" />
-        </button> -->
+        <div class="detail-body">
+          <div class="detail-image">
+            <img id="modal-img" src="" alt="Product image" />
+          </div>
+          <div class="detail-info">
+            <p id="modal-desc" class="description"></p>
+          </div>
+        </div>
+        <div class="detail-footer">
+          <div class="detail-footer__header">
+            <h2 id="modal-name" class="modal-product-name"></h2>
+            <div class="price-qty-line">
+              <span id="modal-points" class="price">0 AP</span>
+              <div class="qty-controls">
+                <button id="modal-decrease" class="qty-btn">−</button>
+                <span id="modal-qty">1</span>
+                <button id="modal-increase" class="qty-btn">+</button>
+              </div>
+              <span id="modal-stock" class="stock-label">În Stoc (0)</span>
+            </div>
+          </div>
+          <button id="modal-add" class="btn-add">Adaugă</button>
+        </div>
+      </div>
+    </div>
 
-        <div class="modal-price-line">
-          <span id="modal-points"></span>
-          <button id="modal-add">
-            <img src="assets/images/backpack-small.png" alt="Adaugă în Coș" />
+    <!-- CART MODAL  -->
+    <div id="cart-modal" class="modal hidden">
+      <div class="modal-content cart-modal">
+        <button class="close" id="close-cart-modal">&times;</button>
+        <h3 class="cart-title">Coș de cumpărături</h3>
+        <div class="cart-list"></div>
+        <div class="cart-footer">
+          <span class="cart-total">Total: 0 AP</span>
+          <button id="checkout-btn" class="btn-checkout hidden">
+            Finalizează
           </button>
         </div>
       </div>
     </div>
 
-    <!-- CART MODAL -->
-    <div id="cart-modal" class="modal hidden">
-      <div class="modal-content">
-        <button class="close" id="close-cart-modal">&times;</button>
-        <h3>Coș de cumpărături</h3>
-        <ul id="cart-items"></ul>
-        <div id="cart-total"></div>
-        <button id="checkout-btn" class="hidden">Finalizează</button>
-      </div>
-    </div>
-
-    <!-- FOOTER -->
+    <!-- FOOTER  -->
     <footer class="site-footer">
       <div class="footer-main">
-        <div class="footer-logo-social">
+        <!-- logo + socials -->
+        <div class="footer-logo-social container">
           <img
-            src="assets/images/logo-footer.png"
+            src="assets/icons/GT-logo-alb.png"
             alt="GT Logo"
             class="footer-logo-inline"
           />
           <div class="social-icons">
-            <img src="assets/images/icon-facebook.png" alt="Facebook" />
-            <img src="assets/images/icon-instagram.png" alt="Instagram" />
-            <img src="assets/images/icon-youtube.png" alt="YouTube" />
-            <img src="assets/images/icon-tiktok.png" alt="TikTok" />
-            <img src="assets/images/icon-linkedin.png" alt="LinkedIn" />
+            <img src="assets/icons/facebook-icon.png" alt="Facebook" />
+            <img src="assets/icons/instagram-icon.png" alt="Instagram" />
+            <img src="assets/icons/youtube-icon.png" alt="YouTube" />
+            <img src="assets/icons/tik-tok-icon.png" alt="TikTok" />
+            <img src="assets/icons/linkedin-icon.png" alt="LinkedIn" />
           </div>
         </div>
-        <div class="footer-section">
+        <!-- sections -->
+        <div class="footer-section container">
           <h4>Contact</h4>
           <ul class="footer-list">
             <li>
-              <img src="assets/images/icon-phone.png" class="icon" alt="" /> +40
-              123 456 789
+              <img src="assets/icons/phone-icon.png" class="icon" /> +40 123 456
+              789
             </li>
             <li>
-              <img src="assets/images/icon-map.png" class="icon" alt="" /> Str.
+              <img src="assets/icons/address-icon.png" class="icon" /> Str.
               Exemplu 1, Cluj
             </li>
             <li>
-              <img src="assets/images/icon-email.png" class="icon" alt="" />
+              <img src="assets/icons/email-icon.png" class="icon" />
               info@generatiatech.ro
             </li>
           </ul>
         </div>
-        <div class="footer-section">
+        <div class="footer-section container">
           <h4>Pagini</h4>
           <ul class="footer-list">
             <li>&gt; <a href="/">Landing</a></li>
             <li>&gt; <a href="/faq">FAQ</a></li>
           </ul>
         </div>
-        <div class="footer-section">
+        <div class="footer-section container">
           <h4>Documente</h4>
           <ul class="footer-list">
             <li>&gt; <a href="/terms">Termeni și condiții</a></li>
@@ -158,7 +161,7 @@
           </ul>
         </div>
       </div>
-      <div class="footer-bottom">©2025 Generația Tech</div>
+      <div class="footer-bottom container">©2025 Generația Tech</div>
     </footer>
 
     <script src="script.js"></script>

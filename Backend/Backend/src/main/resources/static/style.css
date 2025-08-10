@@ -50,61 +50,104 @@ main {
   font-size: 1.3rem;
   font-weight: 600;
 }
+
+/* ─── USER & CART PILL ─── */
+.user-info-box {
+  background: #2c2c2c;
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  margin-right: 1rem;
+}
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.user-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.user-name {
+  font-weight: 500;
+  color: #fff;
+}
+.user-points-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.user-points {
+  font-size: 0.85rem;
+  color: #fff;
+}
+.dropdown-icon {
+  width: 12px;
+  height: 12px;
+  cursor: pointer;
+}
 .user-cart {
   display: flex;
   align-items: center;
-  gap: 1rem;
-}
-.avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
+  justify-content: flex-end;
 }
 .cart-btn {
-  position: relative;
-  background: none;
+  background: #2c2c2c;
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.5rem;
   border: none;
   cursor: pointer;
+  position: relative;
 }
-.cart-btn img {
-  height: 24px;
-}
+/* .cart-btn img {
+  height: fit-content;
+  filter: invert(1);
+} */
 .cart-btn sup {
   position: absolute;
-  top: -6px;
-  right: -6px;
+  top: -2px;
+  right: -2px;
   background: #f00;
   color: #fff;
   padding: 0 4px;
   border-radius: 50%;
   font-size: 0.7rem;
 }
+.cart-btn:hover {
+  background: #f5f5f5;
+}
 
-/* ─── CONTROLS ─── */
+/* ─── CONTROLS (SEARCH + FILTER) ─── */
 .controls-section {
   margin-bottom: var(--gap);
   width: 100%;
 }
+
 .controls-section h1 {
   text-align: center;
-  font-size: 1.6rem;
-  margin-bottom: var(--gap);
-  color: #333;
+  padding: 10px;
 }
+
 .controls {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* ↺ tweak: left+right */
   align-items: center;
 }
 .controls input,
 .controls select {
+  width: 200px;
   padding: 0.5rem;
   border: 1px solid #aaa;
   border-radius: 4px;
-  width: 200px;
 }
 
-/* ─── PRODUCT CONTAINER (FLEX) ─── */
+/* ─── PRODUCT GRID (FLEX) ─── */
 .product-container {
   display: flex;
   flex-wrap: wrap;
@@ -160,25 +203,33 @@ main {
   margin: 0.5rem 0;
 }
 
-/* ─── PRICE LINE ─── */
-.price-line {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.price-line .points {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #6a17df;
-}
-.price-line .card-add-btn {
-  background: none;
+/* make add-to-cart pill on cards match header */
+.card-add-btn {
+  background: #2c2c2c;
   border: none;
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
 }
-.price-line .card-add-btn img {
+.card-add-btn img {
   width: 20px;
   height: 20px;
+  filter: invert(1);
+}
+.card-add-btn:disabled {
+  background: #555;
+  opacity: 0.6;
+  cursor: default;
+}
+
+.price-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: -webkit-fill-available;
 }
 
 /* ─── MODALS ─── */
@@ -195,6 +246,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 }
 .modal-content {
   background: #fff;
@@ -206,88 +258,210 @@ main {
 }
 .modal-content .close {
   position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
+  top: 2px !important;
+  right: 2px !important;
   background: none;
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
 }
-.modal-content button#modal-add {
+
+/* ─── PRODUCT DETAIL MODAL ─── */
+.detail-modal {
+  max-width: 800px;
+  padding: 1rem;
+}
+.detail-body {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
   margin-top: 1rem;
-  padding: 0.5rem 1rem;
+}
+.detail-image img {
+  width: 100%;
+  max-width: 350px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+.detail-info .description {
+  flex: 1;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #333;
+}
+
+/* ─── DETAIL FOOTER (↺ tweaks) ─── */
+.detail-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* ↺ push qty to right */
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.detail-footer .product-title {
+  flex: 0 0 auto;
+  margin: 0;
+  font-size: 1.5rem;
+}
+.price-qty-line {
+  /* flex: 0 0 auto;  */
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.qty-btn {
+  background: #eee;
+  border: none;
+  border-radius: 4px;
+  width: 32px;
+  height: 32px;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+.qty-controls span {
+  min-width: 24px;
+  text-align: center;
+}
+.stock-label {
+  font-size: 0.9rem;
+  color: #999;
+}
+.btn-add {
+  flex: 0 0 auto; /* ↺ only as wide as it needs */
+  margin-left: 1rem;
+  padding: 0.5rem 1.5rem;
+  background: #6b8e64;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btn-add:disabled {
+  background: #ccc;
+  cursor: default;
+}
+
+/* ─── CART MODAL ─── */
+.cart-modal .modal-content {
+  padding-top: 1.5rem;
+}
+.cart-modal .cart-title {
+  margin: 0;
+  margin-bottom: revert;
+  display: inline-block;
+  font-size: 1.25rem;
+}
+.cart-modal .close {
+  top: 1rem;
+  right: 1rem;
+}
+.cart-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 50vh;
+  overflow-y: auto;
+  margin-bottom: 1.5rem;
+}
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.5rem;
+}
+.cart-item img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.cart-item-name {
+  flex: 2;
+  font-weight: 500;
+}
+.cart-item-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex: 1;
+  justify-content: center;
+}
+.cart-item-controls button {
+  background: #eee;
+  border: none;
+  border-radius: 4px;
+  width: 28px;
+  height: 28px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+.cart-item-controls .unit {
+  margin-left: 0.25rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+.cart-item-points {
+  flex: 1;
+  text-align: right;
+  font-weight: 600;
+  color: #6a17df;
+}
+.cart-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cart-total {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+.btn-checkout {
+  padding: 0.5rem 1.25rem;
   background: #6b8e64;
   border: none;
   border-radius: 4px;
   color: #fff;
   cursor: pointer;
 }
-
-.modal-price-line {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 1rem;
-}
-
-#modal-points {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #6a17df;
-}
-
-#modal-add {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-}
-
-#modal-add img {
-  width: 24px;
-  height: 24px;
+.btn-checkout.hidden {
+  display: none;
 }
 
 /* ─── FOOTER ─── */
 .site-footer {
   margin-top: auto;
-  font-family: sans-serif;
 }
-
-/* Footer main container */
 .footer-main {
   display: flex;
   flex-wrap: wrap;
-  /* gap: var(--gap); */
   background: #3b6b50;
   padding: var(--gap) var(--side-pad);
+  gap: var(--gap);
 }
-
-/* Logo + Social */
-.footer-logo-social {
-  flex: 1 1 25%;
+.footer-logo-social,
+.footer-section {
+  flex: 1 1 200px;
   min-width: 200px;
+}
+.footer-logo-social {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
-.footer-logo-social .footer-logo-inline {
+.footer-logo-inline {
   width: 100px;
   height: auto;
 }
-.footer-logo-social .social-icons {
+.social-icons {
   display: flex;
   gap: 0.5rem;
-}
-.footer-logo-social .social-icons img {
-  width: 24px;
-  height: 24px;
-}
-
-/* Each of Contact / Pagini / Documente */
-.footer-section {
-  flex: 1 1 25%;
-  min-width: 200px;
 }
 .footer-section h4 {
   margin-bottom: 0.5rem;
@@ -309,38 +483,91 @@ main {
   height: 16px;
   margin-right: 0.5rem;
 }
-.footer-list li a {
-  color: #ccc;
-  text-decoration: none;
-}
-
-/* Footer bottom band */
 .footer-bottom {
   background: #cfc2ae;
   color: #333;
   text-align: center;
-  padding: 1rem var(--side-pad);
+  /* padding: 1rem var(--side-pad); */
+  padding: 5px;
   font-size: clamp(0.8rem, 1.2vw, 0.9rem);
 }
 
-/* ─── RESPONSIVE BREAKPOINTS ─── */
-/* 3 columns at ≤1024px */
+/* ─── DETAIL FOOTER LAYOUT ─── */
+.detail-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 1rem; /* just to give a little breathing room */
+}
+
+/* First row: name on the left, price+qty on the right */
+.detail-footer__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Make sure the product name doesn’t wrap awkwardly */
+.modal-product-name {
+  margin: 0;
+  font-size: 1.5rem;
+  white-space: nowrap;
+}
+
+/* Center the Add button on its own row */
+.btn-add {
+  align-self: center;
+  /* your existing btn-add styles… */
+  padding: 0.5rem 1.5rem;
+  background: #6b8e64;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  min-width: 140px;
+}
+
+/* 1) In your existing .detail-body, add: */
+.detail-body {
+  display: flex;
+  justify-content: space-between; /* push image left, text right */
+  gap: 2rem; /* optional breathing room */
+}
+
+/* 2) Your header row already uses space-between,  
+      but you can bump the gap if you like: */
+.detail-footer__header {
+  display: flex;
+  justify-content: space-between; /* title at left, price-qty at right */
+  align-items: center;
+  width: -webkit-fill-available;
+}
+
+/* ensure controls & grid use exactly the same container padding */
+.controls-section.container,
+.product-container.container {
+  padding-left: var(--side-pad);
+  padding-right: var(--side-pad);
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+/* ─── RESPONSIVE FOOTER ─── */
 @media (max-width: 1024px) {
   .footer-logo-social,
   .footer-section {
     flex: 1 1 calc((100% - 2 * var(--gap)) / 3);
   }
 }
-
-/* 2 columns at ≤768px */
 @media (max-width: 768px) {
   .footer-logo-social,
   .footer-section {
     flex: 1 1 calc((100% - var(--gap)) / 2);
   }
 }
-
-/* 1 column at ≤480px */
 @media (max-width: 480px) {
   .footer-logo-social,
   .footer-section {

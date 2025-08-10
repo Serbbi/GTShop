@@ -12,17 +12,44 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        rewardRepository.save(new Reward("r1", "Case în copac Gama SylvNest", "description1", "fullDescription1", 100, "images/img1.jpeg", "Muntele cu premii", true, 10));
-        rewardRepository.save(new Reward("r2", "Mobilier Gama FloraForm", "description2", "fullDescription2", 200, "images/img2.jpeg", "Muntele cu premii", true, 10));
-        rewardRepository.save(new Reward("r3", "Oglinda MirrorMind", "description3", "fullDescription3", 300, "images/img3.jpeg", "Muntele cu premii", true, 10));
-        rewardRepository.save(new Reward("r4", "Bicicleta ChronoRider sau ChronoMix", "description4", "fullDescription4", 400, "images/img4.jpeg", "Muntele cu premii", true, 10));
-        rewardRepository.save(new Reward("r5", "Scooter-ul TurmoVolt", "description5", "fullDescription5", 500, "images/img5.jpeg", "Muntele cu premii", true, 10));
-        rewardRepository.save(new Reward("r6", "Flyboard-ul SkyRace", "description6", "fullDescription6", 600, "images/img6.jpeg", "Muntele cu premii", true, 10));
-        rewardRepository.save(new Reward("r7", "Parașuta WaveCloud", "description7", "fullDescription7", 700, "images/img7.jpeg", "Muntele cu premii", true, 10));
-        rewardRepository.save(new Reward("r8", "Caiacul Algomotion", "description8", "fullDescription8", 800, "images/img8.jpeg", "Muntele cu premii", true, 10));
-        rewardRepository.save(new Reward("r9", "Placa de surf NauticCell", "description9", "fullDescription9", 900, "images/img9.jpeg", "Muntele cu premii", true, 10));
-        rewardRepository.save(new Reward("r10", "Lanterna GeoRay sau MountainLight", "description10", "fullDescription10", 1000, "images/img10.jpeg", "ABCDEF", true, 10));
-        rewardRepository.save(new Reward("r11", "Busola WildPass", "description11", "fullDescription11", 1100, "images/img11.jpeg", "Muntele cu premii", true, 10));
-        rewardRepository.save(new Reward("r12", "Dispozitivul & Aplicația EchoPhonic", "description12", "fullDescription12", 1200, "images/img12.jpeg", "Muntele cu premii", true, 10));
+        rewardRepository.save(new Reward("r1", "Boost XP Rush",
+            "Vrei să urci rapid în clasament? Activează acest boost înainte de următorul Rush sau Workout și fiecare punct câștigat se va dubla automat. Ideal pentru săptămânile în care vrei să recuperezi sau să te distanțezi de ceilalți în clasament. Atenție: efectul se aplică o singură dată, așa că folosește-l cu grijă!",
+            "fullDescription1", 100, "images/img_bg1.png", "During", true, 10));
+        rewardRepository.save(new Reward("r2", "Life Saver Pass",
+            "Ai pierdut un Rush sau nu ai trimis tema la timp? Fără stres. Acest pass îți salvează o viață și îți permite să rămâi în competiție fără penalizări. Este rar și valoros, așa că nu-l irosi pe situații minore. Cu cât îl păstrezi pentru un moment critic, cu atât îți poate schimba jocul.",
+            "fullDescription2", 200, "images/img_bg1.png", "During", true, 10));
+        rewardRepository.save(new Reward("r3", "Time Extender",
+            "Nu-ți ajung orele din zi? Activează acest item și primești timp suplimentar pentru a finaliza un Workout după deadline. Perfect pentru zilele aglomerate în care vrei să livrezi calitate, nu grabă. Disponibil în stoc extrem de limitat – rezervă-l pentru provocările cu adevărat importante.",
+            "fullDescription3", 300, "images/img_bg1.png", "During", true, 10));
+        rewardRepository.save(new Reward("r4", "Return Ticket 25",
+            "Biletul tău de întoarcere în aventura Generația Tech, cu o reducere de 25% la următoarea ediție. Perfect pentru exploratorii care știu că misiunea nu se încheie niciodată.",
+            "fullDescription4", 400, "images/img_bg1.png", "After", true, 10));
+        rewardRepository.save(new Reward("r5", "Return Ticket 50",
+            "Revenirea ta în universul digital e acum la jumătate de preț. 50% reducere la următoarea ediție – pentru eroii care au demonstrat că pot.",
+            "fullDescription5", 500, "images/img_bg1.png", "After", true, 10));
+        rewardRepository.save(new Reward("r6", "Tee of Triumph",
+            "Tricoul oficial al campionilor Generația Tech. Moale, comod și marcat cu însemnele celor care au finalizat misiunea cu succes.",
+            "fullDescription6", 600, "images/img_bg1.png", "After", true, 10));
+        rewardRepository.save(new Reward("r7", "Badge of Bravery",
+            "Insigna care vorbește pentru tine. Simbol al curajului, al implicării și al pasiunii tale pentru învățare. Poart-o și inspiră-i pe ceilalți.",
+            "fullDescription7", 700, "images/img_bg1.png", "After", true, 10));
+        rewardRepository.save(new Reward("r8", "Hoodie of Honor",
+            "Hanoracul călduros al exploratorilor Generația Tech. Un trofeu purtabil care îți amintește că ai dus misiunea până la capăt și ai învins.",
+            "fullDescription8", 800, "images/img_bg1.png", "After", true, 10));
+        rewardRepository.save(new Reward("r9", "Digital Detox Kit",
+            "Un pachet care-ți reamintește să iei o pauză reală după o sesiune intensivă: lumânare aromată, o mini-agendă pentru gânduri zen și un playlist exclusiv anti-stres. Pentru că și mintea ta are nevoie de upgrade.",
+            "fullDescription9", 900, "images/img_bg1.png", "After", true, 10));
+        rewardRepository.save(new Reward("r10", "Productivity Power-Up App",
+            "O aplicație customizată, numai pentru absolvenți, cu tool-uri smart pentru organizare, notificări motivaționale și mini-challenge-uri zilnice ca să nu cazi în rutina de după curs.",
+            "fullDescription10", 1000, "images/img_bg1.png", "After", true, 10));
+        rewardRepository.save(new Reward("r11", "Focus Booster Headphones",
+            "Căști wireless cu sunete ambientale pentru concentrare maximă și relaxare.",
+            "fullDescription11", 1100, "images/img_bg1.png", "After", true, 10));
+        rewardRepository.save(new Reward("r12", "Growth Seed Pack",
+            "Un pachet cu semințe rare de plante care simbolizează creșterea personală. Cultivă-le în paralel cu evoluția ta — o metaforă vizuală care să-ți aducă motivare și răbdare.",
+            "fullDescription12", 1200, "images/img_bg1.png", "After", true, 10));
+        rewardRepository.save(new Reward("r13", "Shortcut Sensei",
+            "Dispozitivul dedicat profesioniștilor care prioritizează eficiența, echipat cu butoane programabile personalizabile pentru fluxuri de lucru accelerate. Acest mouse redefinește rapiditatea prin integrarea controlului avansat într-un design compact și ergonomic, optim pentru multitasking la cel mai înalt nivel.",
+            "fullDescription13", 1300, "images/img_bg1.png", "After", true,10));
     }
 }
