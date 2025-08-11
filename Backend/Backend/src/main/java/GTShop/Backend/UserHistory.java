@@ -2,19 +2,19 @@ package GTShop.Backend;
 
 public class UserHistory {
 
-    private String id;
+    private Long id;
     private String rewardName;
     private Integer pointsSpent;
     private String status;
 
-    public UserHistory(String id, String rewardName, Integer pointsSpent, String status){
+    public UserHistory(Long id, String rewardName, Integer pointsSpent, String status){
         this.id=id;
         this.rewardName=rewardName;
         this.pointsSpent=pointsSpent;
         this.status=status;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 

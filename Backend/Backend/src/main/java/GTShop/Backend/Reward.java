@@ -1,17 +1,16 @@
 package GTShop.Backend;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Reward {
 
     @Id
-    private String id;
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
+    @Lob
     private String description;
-    private String fullDescription;
     private Integer price;
     private String image;
     private String category;
@@ -22,11 +21,9 @@ public class Reward {
         
     }
 
-    public Reward(String id, String name, String description, String fullDescription, Integer price, String image, String category, boolean inStock, Integer stockCount) {
-        this.id = id;
+    public Reward(String name, String description, Integer price, String image, String category, boolean inStock, Integer stockCount) {
         this.name = name;
         this.description = description;
-        this.fullDescription = fullDescription;
         this.price = price;
         this.image = image;
         this.category = category;
@@ -34,11 +31,11 @@ public class Reward {
         this.stockCount = stockCount;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -56,14 +53,6 @@ public class Reward {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getFullDescription() {
-        return fullDescription;
-    }
-
-    public void setFullDescription(String fullDescription) {
-        this.fullDescription = fullDescription;
     }
 
     public Integer getPrice() {

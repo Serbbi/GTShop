@@ -9,12 +9,12 @@ const $ = (s) => document.querySelector(s);
 
 // ─── API CALLS ───
 async function fetchProfile() {
-  const res = await fetch("/api/user/profile");
+  const res = await fetch("http://localhost:8080/api/user/profile");
   userProfile = await res.json();
   updateProfileUI();
 }
 async function fetchRewards() {
-  const res = await fetch("/api/rewards");
+  const res = await fetch("http://localhost:8080/api/rewards");
   const data = await res.json();
   PRODUCTS = (data.rewards || []).map(r => ({
     id: r.id,
@@ -29,7 +29,7 @@ async function fetchRewards() {
   renderGrid();
 }
 async function fetchCart() {
-  const res = await fetch("/api/cart");
+  const res = await fetch("http://localhost:8080/api/cart");
   const data = await res.json();
   // Sync cartMap with backend cart
   Object.keys(cartMap).forEach(id => delete cartMap[id]);
@@ -39,7 +39,7 @@ async function fetchCart() {
   updateCartCount();
 }
 async function addToCartBackend(product, qty = 1) {
-  await fetch("/api/cart/add", {
+  await fetch("http://localhost:8080/api/cart/add", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ rewardId: product.id, quantity: qty })
@@ -47,7 +47,7 @@ async function addToCartBackend(product, qty = 1) {
   await fetchCart();
 }
 async function checkoutBackend() {
-  const res = await fetch("/api/checkout", { method: "POST" });
+  const res = await fetch("http://localhost:8080/api/checkout", { method: "POST" });
   const data = await res.json();
   if (data.success) {
     alert("Checkout finalizat!");
