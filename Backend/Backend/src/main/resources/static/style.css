@@ -1,18 +1,21 @@
-/* ─── VARIABLES & RESET ─── */
 :root {
   --side-pad: 2rem;
   --content-max: 1200px;
   --gap: 1.5rem;
 }
+
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: "Lato", sans-serif;
+   box-sizing: border-box;
 }
+
 html,
 body {
   height: 100%;
 }
+
 body {
   display: flex;
   flex-direction: column;
@@ -20,107 +23,105 @@ body {
   font-family: sans-serif;
   background: #cfc2ae;
 }
-main {
-  flex: 1;
+
+.logo {
+  width: 101px;
+  border-right: solid 1px white;
+  padding-right: 16px;
 }
 
-/* ─── UTILITIES ─── */
-.container {
-  max-width: var(--content-max);
-  margin: 0 auto;
-  padding: 0 var(--side-pad);
+.logo-title{
+  display: flex;
+  align-items: center;
 }
 
-/* ─── HEADER ─── */
-.site-header {
-  background: #6b8e64;
-  color: #fff;
-  padding: 0.5rem var(--side-pad);
-  margin-bottom: var(--gap);
+.shop-title{
+  padding-left: 16px;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 48px;
+  color: white;
 }
+
 .header-top {
+  background-color: #0D3B66;
+  height: 75px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 135px 0 135px;
 }
-.logo {
-  height: 32px;
-}
-.shop-title {
-  font-size: 1.3rem;
-  font-weight: 600;
-}
+
+
 
 /* ─── USER & CART PILL ─── */
 .user-info-box {
-  background: #2c2c2c;
-  border-radius: 999px;
+  background: #144E8C;
+  border-radius: 20px;
   padding: 0.25rem 0.75rem;
-  display: inline-flex;
-  align-items: center;
-  margin-right: 1rem;
 }
+
 .user-info {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
+
 .user-text {
   display: flex;
   flex-direction: column;
   line-height: 1.1;
 }
+
 .user-name {
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 400;
   color: #fff;
 }
+
 .user-points-dropdown {
   display: flex;
   align-items: center;
   gap: 0.25rem;
 }
+
 .user-points {
-  font-size: 0.85rem;
-  color: #fff;
+  font-size: 16px;
+  color: #FF7F32;
 }
+
 .dropdown-icon {
-  width: 12px;
-  height: 12px;
   cursor: pointer;
 }
+
 .user-cart {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  gap: 49px;
 }
+
 .cart-btn {
-  background: #2c2c2c;
-  border-radius: 999px;
+  background: #144E8C;
+  border-radius: 20px;
   padding: 0.25rem 0.75rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-left: 0.5rem;
   border: none;
   cursor: pointer;
   position: relative;
 }
-/* .cart-btn img {
-  height: fit-content;
-  filter: invert(1);
-} */
+ 
 .cart-btn sup {
   position: absolute;
   top: -2px;
   right: -2px;
-  background: #f00;
-  color: #fff;
+  background: white;
+  color: #0D3B66;
   padding: 0 4px;
   border-radius: 50%;
-  font-size: 0.7rem;
-}
-.cart-btn:hover {
-  background: #f5f5f5;
+  font-size: 14px;
 }
 
 /* ─── CONTROLS (SEARCH + FILTER) ─── */
@@ -437,11 +438,13 @@ main {
 /* ─── FOOTER ─── */
 .site-footer {
   margin-top: auto;
+  padding: 0 135px 0 135px;
+  background-color: #0D3B66;
 }
+
 .footer-main {
   display: flex;
   flex-wrap: wrap;
-  background: #3b6b50;
   padding: var(--gap) var(--side-pad);
   gap: var(--gap);
 }
@@ -483,13 +486,13 @@ main {
   height: 16px;
   margin-right: 0.5rem;
 }
+
 .footer-bottom {
-  background: #cfc2ae;
-  color: #333;
+  background: #144E8C;
+  color: white;
   text-align: center;
-  /* padding: 1rem var(--side-pad); */
-  padding: 5px;
-  font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+  padding: 6px;
+  font-size: 16px;
 }
 
 /* ─── DETAIL FOOTER LAYOUT ─── */
@@ -555,6 +558,27 @@ a {
   text-decoration: none;
 }
 
+.side {
+  position: fixed;
+  top: 0;
+  width: 150px; /* match your PNG width */
+  height: 100%;
+  background-repeat: repeat-y;
+  background-position: top;
+  background-size: contain; /* or auto */
+  z-index: 1;
+}
+
+.side.left {
+  left: 0;
+  background-image: url("icons/left-leaves.png");
+}
+
+.side.right {
+  right: 0;
+  background-image: url("icons/right-leaves.png");
+}
+
 /* ─── RESPONSIVE FOOTER ─── */
 @media (max-width: 1024px) {
   .footer-logo-social,
@@ -574,3 +598,5 @@ a {
     flex: 1 1 100%;
   }
 }
+
+

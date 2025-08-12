@@ -15,7 +15,7 @@ public class UserProfile {
 
     public UserProfile(){
         this.id="1111";
-        this.name="Briana";
+        this.name="Tret Elena";
         this.avatar="assets/icons/account-icon.png";
         this.activityPoints=4971;
     }

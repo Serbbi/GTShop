@@ -14,6 +14,8 @@ import java.util.Map;
 
     @RestController
     public class CheckoutController {
+        @Autowired
+        private RewardRepository rewardRepository;
 
         @Autowired
         private UserProfile userProfile;
@@ -39,9 +41,19 @@ import java.util.Map;
                     userHistory = new ArrayList<>();
                 }
 
-                for(var i:purchasedItems){
-                    userHistory.add(new UserHistory(i.getReward().getId(), i.getReward().getName(), i.getReward().getPrice(), "Purchased"));
+            for (var item : purchasedItems) {
+                Reward reward = item.getReward();
+
+                userHistory.add(new UserHistory(reward.getId(), reward.getName(), reward.getPrice(), "Purchased"));
+
+                int newStock = reward.getStockCount() - item.getQuantity();
+                if(newStock==0){
+                    reward.setInStock(false);
                 }
+                reward.setStockCount(Math.max(newStock, 0));
+
+                rewardRepository.save(reward);
+            }
 
                 userProfile.setUserHistory(userHistory);
 
@@ -49,7 +61,6 @@ import java.util.Map;
 
                 response.put("success", true);
                 response.put("message", "Your purchase was confirmed!");
-
                 userActivityPoints-=totalPoints;
                 userProfile.setActivityPoints(userActivityPoints);
                 response.put("newBalance", userActivityPoints);

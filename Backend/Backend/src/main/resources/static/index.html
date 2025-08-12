@@ -4,42 +4,51 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>GT Shop</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   </head>
   <body>
+    <div class="side left"></div>
+    <div class="side right"></div>
     <header class="site-header">
       <div class="header-top container">
         <div class="logo-title">
           <img
-            src="assets/icons/GT-logo-alb.png"
+            src="icons/GT-logo-alb.svg"
             alt="Generația Tech"
             class="logo"
           />
-          <span class="shop-title">SHOP TITLE</span>
+          <span class="shop-title">FIRE TECH</span>
         </div>
+      
         <div class="user-cart">
           <div class="user-info-box">
             <div class="user-info">
               <img
-                src="assets/icons/account-icon.png"
+                src="icons/account-icon.svg"
                 alt="Avatar"
                 class="avatar"
               />
               <div class="user-text">
-                <span class="user-name">Tret Elena</span>
+                <span class="user-name"></span>
                 <div class="user-points-dropdown">
-                  <span class="user-points">4881 AP</span>
-                  <img
-                    src="assets/icons/down-arrow-logo.png"
-                    alt=""
-                    class="dropdown-icon"
-                  />
+                  <i><span class="user-points"></span></i>
                 </div>
               </div>
+              <img
+                src="icons/down-arrow-logo.svg"
+                alt=""
+                class="dropdown-icon"
+              />
             </div>
           </div>
           <button id="cart-button" class="cart-btn" aria-label="Cart">
-            <img src="assets/icons/backpack-icon.png" alt="Cart" />
+            <img src="icons/backpack-icon.svg" alt="Cart" />
             <sup id="cart-count">0</sup>
           </button>
         </div>
@@ -115,16 +124,16 @@
         <!-- logo + socials -->
         <div class="footer-logo-social container">
           <img
-            src="assets/icons/GT-logo-alb.png"
+            src="icons/GT-logo-alb.svg"
             alt="GT Logo"
             class="footer-logo-inline"
           />
           <div class="social-icons">
-            <img src="assets/icons/facebook-icon.png" alt="Facebook" />
-            <img src="assets/icons/instagram-icon.png" alt="Instagram" />
-            <img src="assets/icons/youtube-icon.png" alt="YouTube" />
-            <img src="assets/icons/tik-tok-icon.png" alt="TikTok" />
-            <img src="assets/icons/linkedin-icon.png" alt="LinkedIn" />
+            <img src="icons/facebook-icon.svg" alt="Facebook" />
+            <img src="icons/instagram-icon.svg" alt="Instagram" />
+            <img src="icons/youtube-icon.svg" alt="YouTube" />
+            <img src="icons/tik-tok-icon.svg" alt="TikTok" />
+            <img src="icons/linkedin-icon.svg" alt="LinkedIn" />
           </div>
         </div>
         <!-- sections -->
@@ -132,15 +141,15 @@
           <h4>Contact</h4>
           <ul class="footer-list">
             <li>
-              <img src="assets/icons/phone-icon.png" class="icon" /> +40 123 456
+              <img src="icons/phone-icon.svg" class="icon" /> +40 123 456
               789
             </li>
             <li>
-              <img src="assets/icons/address-icon.png" class="icon" /> Str.
+              <img src="icons/address-icon.svg" class="icon" /> Str.
               Exemplu 1, Cluj
             </li>
             <li>
-              <img src="assets/icons/email-icon.png" class="icon" />
+              <img src="icons/email-icon.svg" class="icon" />
               info@generatiatech.ro
             </li>
           </ul>
@@ -161,8 +170,8 @@
           </ul>
         </div>
       </div>
-      <div class="footer-bottom container">©2025 Generația Tech</div>
     </footer>
+    <i><div class="footer-bottom container">©2025 Generația Tech</div></i>
 
     <script src="script.js"></script>
   </body>

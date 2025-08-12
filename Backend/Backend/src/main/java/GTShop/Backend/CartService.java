@@ -13,9 +13,18 @@ public class CartService {
         return cart;
     }
 
-    public void addToCart(Reward reward, Integer quantity){
+    public void addToCart(Reward reward, int quantity) {
+        Cart cart = getCart();
 
-        cart.addItem(reward, quantity);
+        for (CartItem item : cart.getCartItems()) {
+            if (item.getReward().getId().equals(reward.getId())) {
+                item.setQuantity(item.getQuantity() + quantity);
+                return;
+            }
+        }
+
+        CartItem newItem = new CartItem(reward, quantity);
+        cart.getCartItems().add(newItem);
     }
 
 }
