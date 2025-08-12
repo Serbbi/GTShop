@@ -1,4 +1,4 @@
-const url = "http://localhost:8080/api";
+const url = "https://terrific-renewal-production-759e.up.railway.app/api";
 const $ = (s) => document.querySelector(s);
 let rewards = [];
 let userProfile = null;
