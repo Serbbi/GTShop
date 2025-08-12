@@ -14,8 +14,6 @@ public class CartService {
     }
 
     public void addToCart(Reward reward, int quantity) {
-        Cart cart = getCart();
-
         for (CartItem item : cart.getCartItems()) {
             if (item.getReward().getId().equals(reward.getId())) {
                 item.setQuantity(item.getQuantity() + quantity);
@@ -25,6 +23,23 @@ public class CartService {
 
         CartItem newItem = new CartItem(reward, quantity);
         cart.getCartItems().add(newItem);
+    }
+
+    public void removeFromCart(Reward reward){
+
+        CartItem cartItemToRemove = null;
+        for (CartItem item : cart.getCartItems()) {
+            if (item.getReward().getId().equals(reward.getId())) {
+                item.setQuantity(item.getQuantity() -1);
+                if(item.getQuantity() == 0 ){
+                    cartItemToRemove = item;
+                }
+                break;
+            }
+        }
+        if(cartItemToRemove!=null){
+            cart.removeItem(cartItemToRemove);
+        }
     }
 
 }

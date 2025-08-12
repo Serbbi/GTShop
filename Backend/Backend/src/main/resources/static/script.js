@@ -104,6 +104,32 @@ async function addRewardToCart(reward, qty) {
   }
 }
 
+// remove reward from cart
+async function removeRewardFromCart(reward) {
+  try {
+    const response = await fetch(url + "/cart/remove", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ rewardId: reward.id, quantity: 1 }),
+    });
+
+    if (!response.ok) {
+      console.error(
+        "Failed to remove the reward from the cart",
+        response.status,
+        response.statusText
+      );
+      const errorText = await response.text();
+      console.error("Server response:", errorText);
+    } else {
+      //fetchCartRewards();
+      console.log("Reward removed from cart successfully");
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 // checkout
 async function checkout() {
   try {
@@ -143,8 +169,6 @@ function renderGrid() {
   rewards.forEach((p) => {
     if (!p.name.toLowerCase().includes(term)) return;
     if (filter && p.category !== filter) return;
-
-    console.log(p.inStock);
 
     const card = document.createElement("div");
     card.className = "card";
@@ -189,24 +213,21 @@ function updateProfileActivityPoints(profile = userProfile) {
 }
 
 function updateCartCount(cart = cartRewards) {
-  console.log("aa");
   const total = Object.values(cart).reduce((sum, e) => sum + e.qty, 0);
   $("#cart-count").textContent = total;
 }
 
 // ───── START MODALS ─────
 // reward modal
-function openRewardModal(reward) {}
+function openRewardModal(reward) {
+  let minCountValue = 1;
+  let maxCountvalue = reward.stockCount;
+  let currentCountValue = 1;
 
-function openRewardModal(p) {
-  const inCart = cartRewards[p.id]?.qty || 0;
-  let modalQty = 1;
-  const maxAvailable = p.stockCount - inCart;
-
-  $("#modal-img").src = p.image;
-  $("#modal-name").textContent = p.name;
-  $("#modal-desc").textContent = p.description;
-  $("#modal-points").textContent = `${p.price} AP`;
+  $("#modal-img").src = reward.image;
+  $("#modal-name").textContent = reward.name;
+  $("#modal-desc").textContent = reward.description;
+  $("#modal-points").textContent = `${reward.price} AP`;
 
   const stockLabel = $("#modal-stock");
   const qtyDisplay = $("#modal-qty");
@@ -214,7 +235,14 @@ function openRewardModal(p) {
   const btnInc = $("#modal-increase");
   const addBtn = $("#modal-add");
 
-  if (maxAvailable <= 0) {
+  if (currentCountValue === minCountValue) {
+    btnDec.disabled = true;
+  }
+  if (currentCountValue === maxCountvalue) {
+    btnInc.disabled = true;
+  }
+
+  if (maxCountvalue <= 0) {
     stockLabel.textContent = "Stoc epuizat";
     qtyDisplay.textContent = "0";
     btnDec.disabled = true;
@@ -222,40 +250,36 @@ function openRewardModal(p) {
     addBtn.disabled = true;
     addBtn.textContent = "Stoc epuizat";
   } else {
-    stockLabel.textContent = `În Stoc (${maxAvailable})`;
-    qtyDisplay.textContent = modalQty;
+    stockLabel.textContent = "In stoc";
+    qtyDisplay.textContent = currentCountValue;
     addBtn.disabled = false;
     addBtn.textContent = "Adaugă";
 
     btnDec.disabled = true;
     btnDec.onclick = () => {
-      if (modalQty > 1) {
-        modalQty--;
-        qtyDisplay.textContent = modalQty;
+      if (currentCountValue > 1) {
+        currentCountValue--;
+        qtyDisplay.textContent = currentCountValue;
         btnInc.disabled = false;
-        btnDec.disabled = modalQty <= 1;
-        const rem = maxAvailable - modalQty;
-        stockLabel.textContent = rem > 0 ? `În Stoc (${rem})` : "Stoc epuizat";
+        btnDec.disabled = currentCountValue <= 1;
       }
     };
 
-    btnInc.disabled = modalQty >= maxAvailable;
+    btnInc.disabled = currentCountValue >= maxCountvalue;
     btnInc.onclick = () => {
-      if (modalQty < maxAvailable) {
-        modalQty++;
-        qtyDisplay.textContent = modalQty;
+      if (currentCountValue < maxCountvalue) {
+        currentCountValue++;
+        qtyDisplay.textContent = currentCountValue;
         btnDec.disabled = false;
-        btnInc.disabled = modalQty >= maxAvailable;
-        const rem = maxAvailable - modalQty;
-        stockLabel.textContent = rem > 0 ? `În Stoc (${rem})` : "Stoc epuizat";
+        btnInc.disabled = currentCountValue >= maxCountvalue;
       }
     };
 
     addBtn.onclick = async () => {
-      await addRewardToCart(p, modalQty);
-      p.stockCount -= modalQty;
-      if (p.stockCount === 0) {
-        p.inStock = false;
+      await addRewardToCart(reward, currentCountValue);
+      reward.stockCount -= currentCountValue;
+      if (reward.stockCount === 0) {
+        reward.inStock = false;
       }
       updateCartCount();
       closeModal("#product-modal");
@@ -266,18 +290,6 @@ function openRewardModal(p) {
   $("#product-modal").classList.remove("hidden");
 }
 
-// ─── MODAL CLOSE / CART MODAL / RENDER CART / CHECKOUT ───
-function closeModal(sel) {
-  $(sel).classList.add("hidden");
-}
-$("#close-product-modal").onclick = () => closeModal("#product-modal");
-$("#close-cart-modal").onclick = () => closeModal("#cart-modal");
-$("#cart-button").onclick = async () => {
-  await fetchCartRewards();
-  renderCart();
-  $("#cart-modal").classList.remove("hidden");
-};
-
 function renderCart() {
   const container = document.querySelector(".cart-list");
   container.innerHTML = "";
@@ -285,8 +297,9 @@ function renderCart() {
   Object.values(cartRewards)
     .filter((e) => e.qty > 0)
     .forEach((e) => {
-      const { product, qty } = e;
-      const max = product.stock;
+      let { product, qty } = e;
+      let max = product.stockCount;
+      let reward = rewards.filter((r) => r.id === product.id)[0];
 
       const item = document.createElement("div");
       item.className = "cart-item";
@@ -297,30 +310,44 @@ function renderCart() {
           <button class="decrease">−</button>
           <span class="qty">${qty}</span>
           <span class="unit">buc.</span>
-          <button class="increase">+</button>
+         <button class="increase" ${max === 0 ? "disabled" : ""}>+</button>
         </div>
         <div class="cart-item-points">${product.price * qty} AP</div>
       `;
 
-      // decrease
-      item.querySelector(".decrease").onclick = () => {
-        if (e.qty > 0) {
-          e.qty--;
-          if (e.qty === 0) delete cartRewards[product.id];
-          updateCartCount();
-          renderCart();
-          renderGrid(); // re-enable main “add” if needed
+      item.querySelector(".decrease").onclick = async () => {
+        if (qty > 0) {
+          qty--;
+          max++;
+          reward.stockCount++;
+          await removeRewardFromCart(reward);
+          cartRewards[product.id].qty = qty;
+
+          item.querySelector(".qty").textContent = qty;
+          item.querySelector(".cart-item-points").textContent =
+            product.price * qty + " AP";
+          item.querySelector(".increase").disabled = false;
+          if (e.qty === 0) {
+            delete cartRewards[product.id];
+            renderCart();
+          }
         }
       };
-      // increase
+
       item.querySelector(".increase").onclick = () => {
-        if (e.qty < max) {
-          e.qty++;
-          updateCartCount();
-          renderCart();
-          renderGrid();
+        if (max > 0) {
+          qty++;
+          max--;
+          reward.stockCount--;
+          cartRewards[product.id].qty = qty;
+          if (max === 0) {
+            item.querySelector(".increase").disabled = true;
+          }
+          item.querySelector(".qty").textContent = qty;
+          item.querySelector(".cart-item-points").textContent =
+            product.price * qty + " AP";
         } else {
-          alert("Stoc epuizat!");
+          item.querySelector(".increase").disabled = true;
         }
       };
 
@@ -335,7 +362,25 @@ function renderCart() {
   document
     .getElementById("checkout-btn")
     .classList.toggle("hidden", totalAP === 0);
+  document.querySelector("#close-cart-modal").onclick = () => {
+    closeModal("#cart-modal");
+    renderGrid();
+    updateCartCount();
+  };
 }
+
+// ─── MODAL CLOSE / CART MODAL / RENDER CART / CHECKOUT ───
+function closeModal(sel) {
+  $(sel).classList.add("hidden");
+}
+
+$("#close-product-modal").onclick = () => closeModal("#product-modal");
+$("#close-cart-modal").onclick = () => closeModal("#cart-modal");
+$("#cart-button").onclick = async () => {
+  await fetchCartRewards();
+  renderCart();
+  $("#cart-modal").classList.remove("hidden");
+};
 
 $("#checkout-btn").onclick = async () => {
   await checkout();
