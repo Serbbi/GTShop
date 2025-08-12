@@ -27,6 +27,9 @@ public class Cart {
     public void deleteItems(){
        items.clear();
     }
+    public void removeItem (CartItem cartItem){
+        items.remove(cartItem);
+    }
 
     public Integer getTotalPoints(){
         
