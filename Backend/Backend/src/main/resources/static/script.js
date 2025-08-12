@@ -179,7 +179,7 @@ function renderGrid() {
         <div class="price-line">
           <span class="points">${p.price} AP</span>
           <button class="card-add-btn"${p.stockCount === 0 ? " disabled" : ""}>
-            <img src="assets/icons/backpack-icon.png" alt="Adaugă">
+            <img src="icons/backpack-icon.svg" alt="Adaugă">
           </button>
         </div>
       `;
@@ -304,7 +304,7 @@ function renderCart() {
       const item = document.createElement("div");
       item.className = "cart-item";
       item.innerHTML = `
-        <img src="${product.img}" alt="${product.name}">
+        <img src="${product.image}" alt="${product.name}">
         <div class="cart-item-name">${product.name}</div>
         <div class="cart-item-controls">
           <button class="decrease">−</button>
@@ -327,6 +327,13 @@ function renderCart() {
           item.querySelector(".cart-item-points").textContent =
             product.price * qty + " AP";
           item.querySelector(".increase").disabled = false;
+          const totalAP = Object.values(cartRewards).reduce(
+            (sum, e) => sum + e.product.price * e.qty,
+            0
+          );
+          document.querySelector(
+            ".cart-total"
+          ).textContent = `Total: ${totalAP} AP`;
           if (e.qty === 0) {
             delete cartRewards[product.id];
             renderCart();
@@ -346,6 +353,13 @@ function renderCart() {
           item.querySelector(".qty").textContent = qty;
           item.querySelector(".cart-item-points").textContent =
             product.price * qty + " AP";
+          const totalAP = Object.values(cartRewards).reduce(
+            (sum, e) => sum + e.product.price * e.qty,
+            0
+          );
+          document.querySelector(
+            ".cart-total"
+          ).textContent = `Total: ${totalAP} AP`;
         } else {
           item.querySelector(".increase").disabled = true;
         }
@@ -388,7 +402,7 @@ $("#checkout-btn").onclick = async () => {
 
   const profile = await fetchUserProfile();
   updateProfileActivityPoints(profile);
-  updateCartCount();
+  $("#cart-count").textContent = 0;
   closeModal("#cart-modal");
   renderGrid();
 };
