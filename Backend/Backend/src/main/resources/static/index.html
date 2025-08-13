@@ -5,13 +5,19 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>GT Shop</title>
     <link rel="icon" href="/icons/favicon.svg" type="image/x-icon" />
-    <link rel="stylesheet" href="style.css"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="side left"></div>
@@ -19,22 +25,14 @@
     <header class="site-header">
       <div class="header-top container">
         <div class="logo-title">
-          <img
-            src="icons/GT-logo-alb.svg"
-            alt="Generația Tech"
-            class="logo"
-          />
+          <img src="icons/GT-logo-alb.svg" alt="Generația Tech" class="logo" />
           <span class="shop-title">FIRE TECH</span>
         </div>
-      
+
         <div class="user-cart">
           <div class="user-info-box">
             <div class="user-info">
-              <img
-                src="icons/account-icon.svg"
-                alt="Avatar"
-                class="avatar"
-              />
+              <img src="icons/account-icon.svg" alt="Avatar" class="avatar" />
               <div class="user-text">
                 <span class="user-name"></span>
                 <div class="user-points-dropdown">
@@ -63,8 +61,12 @@
         <input type="text" id="search-input" placeholder="Caută…" />
         <select id="filter-select">
           <option value="">Toate categoriile</option>
-          <option value="Muntele cu premii">Muntele cu premii</option>
-          <option value="Amintiri calatoare">Amintiri călătoare</option>
+          <option value="Echipamentele expediției">
+            Echipamentele expediției
+          </option>
+          <option value="Recompensele expediției">
+            Recompensele expediției
+          </option>
         </select>
       </div>
     </section>
@@ -108,7 +110,10 @@
     <div id="cart-modal" class="modal hidden">
       <div class="modal-content cart-modal">
         <button class="close" id="close-cart-modal">&times;</button>
-        <h3 class="cart-title">Coș de cumpărături</h3>
+        <h3 class="cart-title">Pregătește-ți rucsacul!</h3>
+        <div class="cart-empty hidden">
+          Rucsacul tău e gol… moementan. Hai să-l umplem!
+        </div>
         <div class="cart-list"></div>
         <div class="cart-footer">
           <span class="cart-total">Total: 0 AP</span>
@@ -142,12 +147,11 @@
           <h4>Contact</h4>
           <ul class="footer-list">
             <li>
-              <img src="icons/phone-icon.svg" class="icon" /> +40 123 456
-              789
+              <img src="icons/phone-icon.svg" class="icon" /> +40 123 456 789
             </li>
             <li>
-              <img src="icons/address-icon.svg" class="icon" /> Str.
-              Exemplu 1, Cluj
+              <img src="icons/address-icon.svg" class="icon" /> Str. Exemplu 1,
+              Cluj
             </li>
             <li>
               <img src="icons/email-icon.svg" class="icon" />

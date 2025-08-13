@@ -321,6 +321,15 @@ function renderCart() {
           max++;
           reward.stockCount++;
           await removeRewardFromCart(reward);
+          console.log("a", cartRewards);
+          if (
+            qty === 0 &&
+            Object.values(cartRewards).some((item) => item.qty > 0)
+          ) {
+            document.querySelector(".cart-empty").classList.remove("hidden");
+          } else {
+            document.querySelector(".cart-empty").classList.add("hidden");
+          }
           cartRewards[product.id].qty = qty;
 
           item.querySelector(".qty").textContent = qty;
@@ -392,6 +401,11 @@ $("#close-product-modal").onclick = () => closeModal("#product-modal");
 $("#close-cart-modal").onclick = () => closeModal("#cart-modal");
 $("#cart-button").onclick = async () => {
   await fetchCartRewards();
+  if (Object.keys(cartRewards).length === 0) {
+    document.querySelector(".cart-empty").classList.remove("hidden");
+  } else {
+    document.querySelector(".cart-empty").classList.add("hidden");
+  }
   renderCart();
   $("#cart-modal").classList.remove("hidden");
 };
