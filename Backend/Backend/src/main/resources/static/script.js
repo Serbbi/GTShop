@@ -19,7 +19,7 @@ window.addEventListener("scroll", () => {
   lastScrollY = currentScrollY;
 });
 
-document.body.style.marginTop = `${header.offsetHeight}px`;
+document.body.style.marginTop = `${header.offsetHeight-1}px`;
 
 function showCheckoutMessage(type, message) {
   const notification = document.getElementById("checkout-message");
