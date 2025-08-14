@@ -4,6 +4,34 @@ let rewards = [];
 let userProfile = null;
 let cartRewards = {};
 
+let lastScrollY = window.scrollY;
+const header = document.querySelector(".site-header");
+
+window.addEventListener("scroll", () => {
+  const currentScrollY = window.scrollY;
+
+  if (currentScrollY > lastScrollY && currentScrollY > 100) {
+    header.classList.add("hidden");
+  } else {
+    header.classList.remove("hidden");
+  }
+
+  lastScrollY = currentScrollY;
+});
+
+document.body.style.marginTop = `${header.offsetHeight}px`;
+
+function showCheckoutMessage(type, message) {
+  const notification = document.getElementById("checkout-message");
+  notification.textContent = message;
+  notification.className = `notification ${type} visible`;
+
+  setTimeout(() => {
+    notification.classList.add("hidden");
+    notification.classList.remove("visible");
+  }, 4000);
+}
+
 // ───── START API CALLS ─────
 
 // user data
@@ -135,10 +163,23 @@ async function checkout() {
   try {
     const response = await fetch(url + "/checkout", { method: "POST" });
     const data = await response.json();
-    if (!data.succes) {
-      alert(data.message);
+    if (data.success == true) {
+      showCheckoutMessage(
+        "success",
+        "Resursele sunt pe drum spre tabăra ta de bază!"
+      );
+      cartRewards = {};
+    } else {
+      showCheckoutMessage(
+        "error",
+        "Rucsacul e prea greu — adună mai multe puncte!"
+      );
     }
   } catch (error) {
+    showCheckoutMessage(
+      "error",
+      "Rucsacul e prea greu — adună mai multe puncte!"
+    );
     console.log(error);
   }
 }
@@ -175,7 +216,7 @@ function renderGrid() {
     card.dataset.id = p.id;
     card.innerHTML = `
         <img src="${p.image}" alt="${p.name}" class="product-image">
-        <h4>${p.name}</h4>
+        <h4><i>${p.name}</i></h4>
         <div class="price-line">
           <span class="points">${p.price} AP</span>
           <button class="card-add-btn"${p.stockCount === 0 ? " disabled" : ""}>
@@ -227,6 +268,7 @@ function openRewardModal(reward) {
   $("#modal-img").src = reward.image;
   $("#modal-name").textContent = reward.name;
   $("#modal-desc").textContent = reward.description;
+  $("#modal-categ").textContent = "Categoria: " + reward.category;
   $("#modal-points").textContent = `${reward.price} AP`;
 
   const stockLabel = $("#modal-stock");
@@ -243,14 +285,14 @@ function openRewardModal(reward) {
   }
 
   if (maxCountvalue <= 0) {
-    stockLabel.textContent = "Stoc epuizat";
+    stockLabel.textContent = "* stoc epuizat";
     qtyDisplay.textContent = "0";
     btnDec.disabled = true;
     btnInc.disabled = true;
     addBtn.disabled = true;
     addBtn.textContent = "Stoc epuizat";
   } else {
-    stockLabel.textContent = "In stoc";
+    stockLabel.textContent = "* în stoc";
     qtyDisplay.textContent = currentCountValue;
     addBtn.disabled = false;
     addBtn.textContent = "Adaugă";
@@ -291,6 +333,11 @@ function openRewardModal(reward) {
 }
 
 function renderCart() {
+  if (Object.values(cartRewards).some((item) => item.qty > 0)) {
+    document.querySelector(".cart-empty").classList.add("hidden");
+  } else {
+    document.querySelector(".cart-empty").classList.remove("hidden");
+  }
   const container = document.querySelector(".cart-list");
   container.innerHTML = "";
 
@@ -307,7 +354,7 @@ function renderCart() {
         <img src="${product.image}" alt="${product.name}">
         <div class="cart-item-name">${product.name}</div>
         <div class="cart-item-controls">
-          <button class="decrease">−</button>
+          <button class="decrease">-</button>
           <span class="qty">${qty}</span>
           <span class="unit">buc.</span>
          <button class="increase" ${max === 0 ? "disabled" : ""}>+</button>
@@ -321,15 +368,6 @@ function renderCart() {
           max++;
           reward.stockCount++;
           await removeRewardFromCart(reward);
-          console.log("a", cartRewards);
-          if (
-            qty === 0 &&
-            Object.values(cartRewards).some((item) => item.qty > 0)
-          ) {
-            document.querySelector(".cart-empty").classList.remove("hidden");
-          } else {
-            document.querySelector(".cart-empty").classList.add("hidden");
-          }
           cartRewards[product.id].qty = qty;
 
           item.querySelector(".qty").textContent = qty;
@@ -416,7 +454,8 @@ $("#checkout-btn").onclick = async () => {
 
   const profile = await fetchUserProfile();
   updateProfileActivityPoints(profile);
-  $("#cart-count").textContent = 0;
+  updateCartCount();
+  //$("#cart-count").textContent = 0;
   closeModal("#cart-modal");
   renderGrid();
 };

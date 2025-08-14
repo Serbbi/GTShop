@@ -20,10 +20,11 @@
     />
   </head>
   <body>
+    <div id="checkout-message" class="notification hidden"></div>
     <div class="side left"></div>
     <div class="side right"></div>
     <header class="site-header">
-      <div class="header-top container">
+      <div class="header-top">
         <div class="logo-title">
           <img src="icons/GT-logo-alb.svg" alt="Generația Tech" class="logo" />
           <span class="shop-title">FIRE TECH</span>
@@ -54,20 +55,33 @@
       </div>
     </header>
 
+    <!-- BANNER:-->
+    <div class="banner">
+      <img src="icons/rob-otto.png" alt="rob otto" />
+      <h1>Doi ghizi, două direcții… pe cine urmezi?</h1>
+      <img src="icons/sab-ottor.png" alt="sab ottor" />
+    </div>
+
     <!-- CONTROLS: search + filter -->
     <section class="controls-section container">
-      <h1>Lorem ipsum adipiscing mollis neque</h1>
+      <!-- <h1>Lorem ipsum adipiscing mollis neque</h1> -->
       <div class="controls">
-        <input type="text" id="search-input" placeholder="Caută…" />
-        <select id="filter-select">
-          <option value="">Toate categoriile</option>
-          <option value="Echipamentele expediției">
-            Echipamentele expediției
-          </option>
-          <option value="Recompensele expediției">
-            Recompensele expediției
-          </option>
-        </select>
+        <div class="search-container">
+          <img src="icons/search-icon.svg" />
+          <input type="text" id="search-input" placeholder="Caută…" />
+        </div>
+        <div class="filter-container">
+          <img src="icons/filter-icon.svg" />
+          <select id="filter-select">
+            <option value="">Toate categoriile</option>
+            <option value="Echipamentele expediției">
+              Echipamentele expediției
+            </option>
+            <option value="Recompensele expediției">
+              Recompensele expediției
+            </option>
+          </select>
+        </div>
       </div>
     </section>
 
@@ -79,48 +93,63 @@
     <!-- PRODUCT MODAL (unchanged) -->
     <div id="product-modal" class="modal hidden">
       <div class="modal-content detail-modal">
-        <button class="close" id="close-product-modal">&times;</button>
-        <div class="detail-body">
-          <div class="detail-image">
+        <div class="modal-header">
+          <div class="modal-title">
+            <h2 id="modal-name" class="modal-product-name"></h2>
+            <p id="modal-categ" class="category"></p>
+          </div>
+          <button class="close" id="close-product-modal">
+            <img src="icons/close-icon.svg" />
+          </button>
+        </div>
+
+        <div class="prize-information">
+          <div class="left-side">
             <img id="modal-img" src="" alt="Product image" />
           </div>
-          <div class="detail-info">
+
+          <div class="right-side">
             <p id="modal-desc" class="description"></p>
-          </div>
-        </div>
-        <div class="detail-footer">
-          <div class="detail-footer__header">
-            <h2 id="modal-name" class="modal-product-name"></h2>
-            <div class="price-qty-line">
+            <div class="price-quantity">
               <span id="modal-points" class="price">0 AP</span>
               <div class="qty-controls">
-                <button id="modal-decrease" class="qty-btn">−</button>
+                <button id="modal-decrease" class="qty-btn">
+                  <img src="icons/minus-icon.svg" />
+                </button>
                 <span id="modal-qty">1</span>
-                <button id="modal-increase" class="qty-btn">+</button>
+                <button id="modal-increase" class="qty-btn">
+                  <img src="icons/plus-icon.svg" />
+                </button>
               </div>
-              <span id="modal-stock" class="stock-label">În Stoc (0)</span>
             </div>
+            <span id="modal-stock" class="stock-label">* în stoc</span>
           </div>
-          <button id="modal-add" class="btn-add">Adaugă</button>
         </div>
+        <button id="modal-add" class="btn-add">Adaugă</button>
       </div>
     </div>
 
     <!-- CART MODAL  -->
     <div id="cart-modal" class="modal hidden">
-      <div class="modal-content cart-modal">
-        <button class="close" id="close-cart-modal">&times;</button>
-        <h3 class="cart-title">Pregătește-ți rucsacul!</h3>
-        <div class="cart-empty hidden">
-          Rucsacul tău e gol… moementan. Hai să-l umplem!
+      <div class="modal-content detail-modal">
+        <div class="modal-header">
+          <h3 class="cart-title">Pregătește-ți rucsacul!</h3>
+          <button class="close" id="close-cart-modal">
+            <img src="icons/close-icon.svg" />
+          </button>
         </div>
+
+        <div class="cart-empty hidden">
+          Rucsacul tău e gol… momentan. Hai să-l umplem!
+        </div>
+
         <div class="cart-list"></div>
         <div class="cart-footer">
           <span class="cart-total">Total: 0 AP</span>
-          <button id="checkout-btn" class="btn-checkout hidden">
-            Finalizează
-          </button>
         </div>
+        <button id="checkout-btn" class="btn-checkout hidden">
+          Finalizează
+        </button>
       </div>
     </div>
 
@@ -128,22 +157,32 @@
     <footer class="site-footer">
       <div class="footer-main">
         <!-- logo + socials -->
-        <div class="footer-logo-social container">
+        <div class="footer-logo-social">
           <img
             src="icons/GT-logo-alb.svg"
             alt="GT Logo"
             class="footer-logo-inline"
           />
           <div class="social-icons">
-            <img src="icons/facebook-icon.svg" alt="Facebook" />
-            <img src="icons/instagram-icon.svg" alt="Instagram" />
-            <img src="icons/youtube-icon.svg" alt="YouTube" />
-            <img src="icons/tik-tok-icon.svg" alt="TikTok" />
-            <img src="icons/linkedin-icon.svg" alt="LinkedIn" />
+            <a href="https://www.facebook.com/generatiatech.ro"
+              ><img src="icons/facebook-icon.svg" alt="Facebook"
+            /></a>
+            <a href="https://www.instagram.com/generatia_tech/"
+              ><img src="icons/instagram-icon.svg" alt="Instagram"
+            /></a>
+            <a href="https://www.youtube.com/channel/UCFcl68WdHw_L-RpYoL05uRw">
+              <img src="icons/youtube-icon.svg" alt="YouTube" />
+            </a>
+            <a href="https://www.tiktok.com/@generatia.tech">
+              <img src="icons/tik-tok-icon.svg" alt="TikTok" />
+            </a>
+            <a href="https://www.linkedin.com/company/digitalnationro">
+              <img src="icons/linkedin-icon.svg" alt="LinkedIn" />
+            </a>
           </div>
         </div>
         <!-- sections -->
-        <div class="footer-section container">
+        <div class="footer-section">
           <h4>Contact</h4>
           <ul class="footer-list">
             <li>
@@ -159,14 +198,14 @@
             </li>
           </ul>
         </div>
-        <div class="footer-section container">
+        <div class="footer-section">
           <h4>Pagini</h4>
           <ul class="footer-list">
             <li>&gt; <a href="/">Landing</a></li>
             <li>&gt; <a href="/faq">FAQ</a></li>
           </ul>
         </div>
-        <div class="footer-section container">
+        <div class="footer-section">
           <h4>Documente</h4>
           <ul class="footer-list">
             <li>&gt; <a href="/terms">Termeni și condiții</a></li>
@@ -176,7 +215,7 @@
         </div>
       </div>
     </footer>
-    <i><div class="footer-bottom container">©2025 Generația Tech</div></i>
+    <i><div class="footer-bottom">©2025 Generația Tech</div></i>
 
     <script src="script.js"></script>
   </body>
